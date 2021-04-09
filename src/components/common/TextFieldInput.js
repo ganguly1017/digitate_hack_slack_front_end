@@ -30,10 +30,10 @@ function TextFieldInput(props) {
           "is-invalid": error
         })}
       />
-      {infoText && (<div id={id} className="form-text"><i class="fas fa-info-circle"></i>{infoText}</div>)}
+      {infoText && (<div id={id} className="form-text"><i className="fas fa-info-circle"></i>{infoText}</div>)}
       {error && (
         <div className="invalid-feedback">
-          <i class="fas fa-exclamation-circle"></i>{error}
+          <i className="fas fa-exclamation-circle"></i>{error}
         </div>
       )}
     </div>

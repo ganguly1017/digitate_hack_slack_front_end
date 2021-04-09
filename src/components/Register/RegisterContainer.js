@@ -15,11 +15,23 @@ class RegisterContainer extends Component {
 
   }
 
+  handleChange = (e) => {
+
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+
+    console.log(this.state)
+
+  }
 
   render() {
     return (
       <RegisterView 
-
+        {...this.state}
+        handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
       />
     )
   }
