@@ -12,6 +12,7 @@ import Footer from './components/Layout/Footer'
 import TeamListContainer from './components/Layout/TeamList/TeamListContainer'
 import LoginContainer from './components/Login/LoginContainer'
 import RegisterContainer from './components/Register/RegisterContainer'
+import NewTeamContainer from './components/NewTeam/NewTeamContainer'
 
 export default function App() {
   return (
@@ -26,6 +27,9 @@ export default function App() {
         </Route>
         <Route exact path="/register">
           <RegisterContainer />
+        </Route>
+        <Route exact path="/createTeam">
+          <NewTeamContainer />
         </Route>
         <Footer />
       </Router>
