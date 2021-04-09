@@ -16,7 +16,15 @@ class RegisterContainer extends Component {
   }
 
   handleChange = (e) => {
+    const name = e.target.name
+    const value = e.target.value
 
+    if (name == "username"){
+      this.setState({ [name] : value.replace(" ",  "_")})
+      return;
+    }
+
+    this.setState({ [name] : value})
   }
 
   handleSubmit = (e) => {

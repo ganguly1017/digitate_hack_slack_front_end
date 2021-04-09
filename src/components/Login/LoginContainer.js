@@ -12,7 +12,10 @@ class LoginContainer extends Component {
   }
 
   handleChange = (e) => {
+    const name = e.target.name
+    const value = e.target.value
 
+    this.setState({ [name] : value})
   }
 
   handleSubmit = (e) => {
