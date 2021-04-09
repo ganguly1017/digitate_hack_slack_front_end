@@ -8,6 +8,7 @@ import NavbarContainer from './components/Layout/Navbar/NavbarContainer'
 import Footer from './components/Layout/Footer'
 import TeamListContainer from './components/Layout/TeamList/TeamListContainer'
 import LoginContainer from './components/Login/LoginContainer'
+import RegisterContainer from './components/Register/RegisterContainer'
 
 export default function App() {
   return (
@@ -18,6 +19,9 @@ export default function App() {
       </Route>
       <Route exact path="/login">
         <LoginContainer />
+      </Route>
+      <Route exact path="/register">
+        <RegisterContainer />
       </Route>
       <Footer />
     </Router>
