@@ -3,7 +3,7 @@ import TeamCard from './TeamCard'
 
 function TeamListView() {
   return (
-    <div className="container-fluid py-5 bg-warning" style={{ height: "400px" }}>
+    <div className="container-fluid py-5 bg-warning" >
       <div className="container" >
         <div className="row" >
           <div className="col-md-6 text-center">

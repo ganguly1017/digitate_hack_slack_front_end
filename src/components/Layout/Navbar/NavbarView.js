@@ -21,7 +21,7 @@ function NavbarView() {
             </li>
             <li className="nav-item">
             <Link className="nav-link" aria-current="page" to="/createTeam">
-              <i class="fas fa-plus-circle text-warning pe-2"></i>Team
+              <i className="fas fa-plus-circle text-warning pe-2"></i>Team
             </Link>
             </li>
           </ul>
