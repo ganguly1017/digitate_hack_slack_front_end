@@ -13,6 +13,19 @@ import TeamListContainer from './components/Layout/TeamList/TeamListContainer'
 import LoginContainer from './components/Login/LoginContainer'
 import RegisterContainer from './components/Register/RegisterContainer'
 import NewTeamContainer from './components/NewTeam/NewTeamContainer'
+import setAuthToken from './utils/setAuthToken'
+import { setUser } from './redux/action/authActions'
+
+
+// set data from localStorage
+if (localStorage.jwtToken && localStorage.user ){
+  // set auth token to axios HTTP header
+  setAuthToken(localStorage.jwtToken)
+
+  // disptach set user action to auth reducer
+  store.dispatch(setUser(JSON.parse(localStorage.user)))
+}
+
 
 export default function App() {
   return (
