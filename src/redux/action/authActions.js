@@ -10,6 +10,7 @@ import {
 
 import { apiBaseURL } from './../../utils/constant'
 import axios from 'axios'
+import Swal from 'sweetalert2' 
 
 
 // login user
@@ -28,16 +29,12 @@ export const loginUser = (user, history) => dispatch => {
     // set isLoading to false
     dispatch(authResponse())
 
-    console.log(res.data)
-
   }).catch(err => {
     // set isLoading to false
     dispatch(authResponse())
 
     // set errors
     dispatch(setError(err.response.data.error))
-
-    console.log(err.response.data)
   })
 }
 
@@ -57,10 +54,14 @@ export const registeUser = (user, history) => dispatch => {
     // set isLoading to false
     dispatch(authResponse())
 
+    Swal.fire(
+      'User Registration',
+      res.data.message,
+      'success'
+    )
+
     // redirect user to login page
     history.push("/login")
-
-    console.log(res.data)
 
   }).catch(err => {
     // set isLoading to false
@@ -68,8 +69,6 @@ export const registeUser = (user, history) => dispatch => {
 
     // set errors
     dispatch(setError(err.response.data.error))
-
-    console.log(err.response.data)
   })
 }
 

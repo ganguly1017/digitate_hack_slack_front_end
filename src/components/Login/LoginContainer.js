@@ -29,9 +29,6 @@ class LoginContainer extends Component {
 
     // dispatch login user action on redux
     this.props.loginUser(this.state, this.props.history)
-    
-    
-    console.log(this.state)
 
   }
 

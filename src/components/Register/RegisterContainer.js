@@ -37,9 +37,6 @@ class RegisterContainer extends Component {
     e.preventDefault()
 
     this.props.registeUser(this.state, this.props.history)
-
-    console.log(this.state)
-
   }
 
   render() {
