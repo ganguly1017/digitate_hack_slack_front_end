@@ -17,6 +17,7 @@ import LoginContainer from './components/Login/LoginContainer'
 import RegisterContainer from './components/Register/RegisterContainer'
 import NewTeamContainer from './components/NewTeam/NewTeamContainer'
 import MyTeamContainer from './components/MyTeam/MyTeamContainer'
+import ChatBoxContainer from './components/ChatBox/ChatBoxContainer'
 
 
 
@@ -43,6 +44,9 @@ export default function App() {
         </Route>
         <Route exact path="/register">
           <RegisterContainer />
+        </Route>
+        <Route exact path="/chat_box">
+          <ChatBoxContainer />
         </Route>
         <Route exact path="/createTeam">
           <PrivateRoute>

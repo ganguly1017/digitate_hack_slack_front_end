@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function TeamCard(props) {
   const {
@@ -18,7 +19,7 @@ function TeamCard(props) {
             { title && <h5 className="card-title text-capitalize">{props.title}</h5> }
             { about && (<p className="card-text">{props.about}</p>) }
             { description && (<p className="card-text">{description}</p>) }
-            { btn_text && (<a href="#" className="btn btn-danger">{props.btn_text}</a>)}
+            { btn_text && (<Link to="/chat_box" className="btn btn-danger">{props.btn_text}</Link>)}
           </div>
         </div>
 
