@@ -16,6 +16,11 @@ function NavbarView(props) {
             </Link>
         </li>
         <li className="nav-item">
+          <Link className="nav-link" aria-current="page" to="/my">
+            My Team
+          </Link>
+        </li>
+        <li className="nav-item">
           <a className="nav-link" href="#" aria-current="page" onClick={props.logoutUser}>
             Logout
             </a>
