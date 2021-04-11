@@ -9,6 +9,7 @@ import store from './redux/store'
 import setAuthToken from './utils/setAuthToken'
 import { setUser } from './redux/action/authActions'
 
+import PrivateRoute from './components/common/PrivateRoute'
 import NavbarContainer from './components/Layout/Navbar/NavbarContainer'
 import Footer from './components/Layout/Footer'
 import TeamListContainer from './components/Layout/TeamList/TeamListContainer'
@@ -20,7 +21,7 @@ import MyTeamContainer from './components/MyTeam/MyTeamContainer'
 
 
 // set data from localStorage
-if (localStorage.jwtToken && localStorage.user ){
+if (localStorage.jwtToken && localStorage.user) {
   // set auth token to axios HTTP header
   setAuthToken(localStorage.jwtToken)
 
@@ -44,10 +45,14 @@ export default function App() {
           <RegisterContainer />
         </Route>
         <Route exact path="/createTeam">
-          <NewTeamContainer />
+          <PrivateRoute>
+            <NewTeamContainer />
+          </PrivateRoute>
         </Route>
         <Route exact path="/my">
-          <MyTeamContainer />
+          <PrivateRoute>
+            <MyTeamContainer />
+          </PrivateRoute>
         </Route>
         <Footer />
       </Router>

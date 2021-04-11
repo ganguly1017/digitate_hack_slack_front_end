@@ -36,7 +36,7 @@ function TeamListView(props) {
   }
 
   return (
-    <div className="container-fluid py-5 bg-warning" >
+    <div className="container-fluid py-5 bg-secondary" >
       <div className="container" >
         <div className="row" >
           {out}

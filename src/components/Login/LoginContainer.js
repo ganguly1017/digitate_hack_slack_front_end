@@ -24,6 +24,12 @@ class LoginContainer extends Component {
     this.setState({ [name] : value})
   }
 
+  componentDidMount(){
+    if (this.props.auth.isAuthenticated){
+      this.props.history.push("/my")
+    }
+  }
+
   handleSubmit = (e) => {
     e.preventDefault()
 
