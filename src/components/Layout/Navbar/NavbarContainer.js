@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import NavbarView from './NavbarView'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import { logoutUser } from './../../../redux/action/authActions'
 
 class NavbarContainer extends Component {
   constructor(props){
@@ -10,11 +13,30 @@ class NavbarContainer extends Component {
     }
   }
 
+  logoutUser = (e) => {
+    e.preventDefault()
+
+    // dispatch logout user action
+    this.props.logoutUser(this.props.history)
+  }
+
   render() {
     return (
-      <NavbarView />
+      <NavbarView 
+        {...this.props}
+        logoutUser={this.logoutUser}
+      />
     )
   }
 }
 
-export default NavbarContainer
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+
+const mapDispatchToProps = {
+  logoutUser
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(NavbarContainer))

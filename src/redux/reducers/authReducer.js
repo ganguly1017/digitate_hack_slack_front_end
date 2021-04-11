@@ -3,7 +3,8 @@ import {
   AUTH_RESPONSE,
   AUTH_SET_ERROR,
   AUTH_REQUEST,
-  AUTH_SET_USER
+  AUTH_SET_USER,
+  AUTH_LOGOUT
 } from './../action/types'
 
 const initialState = {
@@ -40,7 +41,14 @@ export default function authReducer(state = initialState, action) {
     case AUTH_SET_USER:
       return {
         ...state,
-        user: action.payload
+        user: action.payload,
+        isAuthenticated: true
+      }
+    case AUTH_LOGOUT:
+      return {
+        ...state,
+        user: {},
+        isAuthenticated: false
       }
     default:
       return state

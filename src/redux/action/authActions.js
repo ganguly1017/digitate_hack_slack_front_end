@@ -5,7 +5,8 @@ import {
   AUTH_RESPONSE,
   AUTH_SET_ERROR,
   AUTH_REQUEST,
-  AUTH_SET_USER
+  AUTH_SET_USER,
+  AUTH_LOGOUT
 } from './types'
 
 import { apiBaseURL } from './../../utils/constant'
@@ -86,11 +87,34 @@ export const registeUser = (user, history) => dispatch => {
   })
 }
 
+
+// logout user
+export const logoutUser = (history) => dispatch => {
+  // logout user
+  dispatch(clearUser())
+
+  // clear localstorage
+  localStorage.clear()
+
+  // remove HTTP Header auth token from axios
+  setAuthToken(false)
+
+  // redirect to home page
+  history.push("/")
+}
+
 // Set User
 export const setUser = (user) => {
   return {
     type: AUTH_SET_USER,
     payload: user
+  }
+}
+
+// clear User on logout
+export const clearUser = () => {
+  return {
+    type: AUTH_LOGOUT
   }
 }
 
