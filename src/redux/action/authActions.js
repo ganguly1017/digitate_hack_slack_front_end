@@ -8,10 +8,37 @@ import {
   AUTH_SET_USER
 } from './types'
 
+import { apiBaseURL } from './../../utils/constant'
+import axios from 'axios'
+
 
 // login user
-export const loginUser = (user) => dispatch => {
+export const loginUser = (user, history) => dispatch => {
+  // set isLoading to true
+  dispatch(authRequest());
 
+  // clear auth errors
+  dispatch(clearErrors());
+
+  // axios API call
+  axios.post(
+    `${apiBaseURL}/api/user/login`,
+    user
+  ).then(res => {
+    // set isLoading to false
+    dispatch(authResponse())
+
+    console.log(res.data)
+
+  }).catch(err => {
+    // set isLoading to false
+    dispatch(authResponse())
+
+    // set errors
+    dispatch(setError(err.response.data.error))
+
+    console.log(err.response.data)
+  })
 }
 
 // register user
