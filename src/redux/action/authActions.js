@@ -42,8 +42,35 @@ export const loginUser = (user, history) => dispatch => {
 }
 
 // register user
-export const registeUser = (user) => dispatch => {
-  
+export const registeUser = (user, history) => dispatch => {
+  // set isLoading to true
+  dispatch(authRequest());
+
+  // clear auth errors
+  dispatch(clearErrors());
+
+  // axios API call
+  axios.post(
+    `${apiBaseURL}/api/user/register`,
+    user
+  ).then(res => {
+    // set isLoading to false
+    dispatch(authResponse())
+
+    // redirect user to login page
+    history.push("/login")
+
+    console.log(res.data)
+
+  }).catch(err => {
+    // set isLoading to false
+    dispatch(authResponse())
+
+    // set errors
+    dispatch(setError(err.response.data.error))
+
+    console.log(err.response.data)
+  })
 }
 
 // Set User

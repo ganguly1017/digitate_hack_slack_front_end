@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import LoginView from './LoginView'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { loginUser } from './../../redux/action/authActions'
+import { loginUser, clearErrors } from './../../redux/action/authActions'
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -12,6 +12,9 @@ class LoginContainer extends Component {
       email: '',
       password: ''
     }
+
+    // auth clear error action dispatch
+    this.props.clearErrors()
   }
 
   handleChange = (e) => {
@@ -50,7 +53,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  loginUser
+  loginUser,
+  clearErrors
 }
 
 

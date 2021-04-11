@@ -3,6 +3,9 @@ import TextFieldInput from './../common/TextFieldInput'
 
 
 function RegisterView(props) {
+
+  const { error } = props.auth
+
   return (
     <div className="container-fluid">
       <div className="container my-5">
@@ -19,6 +22,7 @@ function RegisterView(props) {
                 className="form-control"
                 lblText="Username"
                 infoText="Your username will shown in chat list."
+                error={error.username}
               />
               <TextFieldInput
                 type="email"
@@ -30,6 +34,7 @@ function RegisterView(props) {
                 className="form-control"
                 lblText="Email address"
                 infoText="We'll never share your email with anyone else."
+                error={error.email}
               />
 
               <TextFieldInput
@@ -41,6 +46,7 @@ function RegisterView(props) {
                 placeholder="**********"
                 className="form-control"
                 lblText="Password"
+                error={error.password}
               />
               <TextFieldInput
                 type="password"
@@ -52,6 +58,7 @@ function RegisterView(props) {
                 className="form-control"
                 lblText="Re-Type Password Again: "
                 infoText="Type same password as above."
+                error={error.password1}
               />
 
               <button type="submit" className="btn btn-success" style={{ float: "right" }}>Register</button>

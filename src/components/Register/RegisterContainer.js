@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import RegisterView from './RegisterView'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import { registeUser, clearErrors } from './../../redux/action/authActions'
 
 class RegisterContainer extends Component {
   
@@ -12,6 +15,9 @@ class RegisterContainer extends Component {
       password: '',
       password1: ''
     }
+
+    // auth clear error action dispatch
+    this.props.clearErrors()
 
   }
 
@@ -30,6 +36,8 @@ class RegisterContainer extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
 
+    this.props.registeUser(this.state, this.props.history)
+
     console.log(this.state)
 
   }
@@ -40,10 +48,20 @@ class RegisterContainer extends Component {
         {...this.state}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
+        {...this.props}
       />
     )
   }
 }
 
+const mapStateToProps = state => ({
+  auth: state.auth
+})
 
-export default RegisterContainer
+const mapDispatchToProps = {
+  registeUser,
+  clearErrors
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(RegisterContainer))
