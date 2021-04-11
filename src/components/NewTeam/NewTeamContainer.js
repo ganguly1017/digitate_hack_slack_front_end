@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import NewTeamView from './NewTeamView'
-
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import { createNewTeam, clearErrors } from './../../redux/action/teamActions'
 
 class NewTeamContainer extends Component {
 
@@ -9,8 +11,11 @@ class NewTeamContainer extends Component {
 
     this.state = {
       name: '',
-      desc: ''
+      description: ''
     }
+
+    // dispatch clear errors action of team
+    this.props.clearErrors()
   }
 
   handleChange = (e) => {
@@ -23,8 +28,8 @@ class NewTeamContainer extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
 
-    console.log(this.state)
-
+    // dispatch create new team action
+    this.props.createNewTeam(this.state, this.props.history)
   }
 
   render() {
@@ -33,10 +38,21 @@ class NewTeamContainer extends Component {
         {...this.state}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
+        {...this.props}
       />
     )
   }
 }
 
 
-export default NewTeamContainer
+const mapStateToProps = state => ({
+  team: state.team
+})
+
+const mapDispatchToProps = {
+  createNewTeam,
+  clearErrors
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(NewTeamContainer))

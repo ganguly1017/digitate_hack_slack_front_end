@@ -2,6 +2,8 @@ import React from 'react'
 import TextFieldInput from './../common/TextFieldInput'
 
 function NewTeamView(props) {
+  const { error } = props.team
+
   return (
     <div className="container-fluid">
       <div className="container my-5">
@@ -18,17 +20,19 @@ function NewTeamView(props) {
                 className="form-control"
                 lblText="Team Name"
                 infoText="This will be you chat group / team"
+                error={error.name}
               />
 
               <TextFieldInput
                 type="text"
-                name="desc"
-                id="desc"
-                value={props.desc}
+                name="description"
+                id="description"
+                value={props.description}
                 onChange={props.handleChange}
                 placeholder="android team for video streaming project"
                 className="form-control"
                 lblText="Team Description"
+                error={error.description}
               />
               <button type="submit" className="btn btn-primary" style={{ float: "right" }}>Create</button>
             </form>
