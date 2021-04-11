@@ -45,7 +45,7 @@ function NavbarView(props) {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
-          <img src="assets/img/slack_logo.png" className="rounded-circle" width="40" height="40" />
+          <img src="assets/img/slack_logo.png" alt="company logo" className="rounded-circle" width="40" height="40" />
         </Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
