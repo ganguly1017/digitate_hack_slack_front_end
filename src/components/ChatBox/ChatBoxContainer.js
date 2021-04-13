@@ -1,13 +1,24 @@
 import React, { Component } from 'react'
 import ChatBoxView from './ChatBoxView'
+import axios from 'axios'
+import { apiBaseURL } from './../../utils/constant'
 
 class ChatBoxContainer extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
 
     this.state = {
-      message: ''
+      message: '',
+      team: {
+        _id: '',
+        name: '',
+        description: '',
+        user: {
+          _id: '',
+          username: ''
+        }
+      }
     }
 
   }
@@ -16,13 +27,22 @@ class ChatBoxContainer extends Component {
     const name = e.target.name
     const value = e.target.value
 
-    this.setState({ [name] : value})
+    this.setState({ [name]: value })
   }
 
-  componentDidMount(){
+  componentDidMount() {
     const query = new URLSearchParams(window.location.search)
 
-    console.log(query.get("tid"))
+    // send axios AJAX request to get team data
+    axios.post(
+      `${apiBaseURL}/api/team/getTeam/${query.get("tid")}`
+    ).then(res => {
+      this.setState({ team: res.data.team })
+    }).catch(err => {
+
+    })
+
+
   }
 
   handleSubmit = (e) => {
@@ -34,7 +54,7 @@ class ChatBoxContainer extends Component {
 
   render() {
     return (
-      <ChatBoxView 
+      <ChatBoxView
         {...this.state}
         {...this.props}
         handleChange={this.handleChange}

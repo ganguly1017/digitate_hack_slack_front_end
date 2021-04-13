@@ -9,7 +9,9 @@ function ChatBoxView(props) {
   return (
     <div className="container-fluid py-5">
     <div className="container">
-      <h3 className=" text-center">Messaging</h3>
+      <h3 className=" text-center text-capitalize">{props.team.name}</h3>
+      <p className=" text-center">{props.team.description}</p>
+      <p className=" text-center">Team created by @{props.team.user.username}</p>
       <div className="messaging">
         <div className="inbox_msg">
           <div className="inbox_people">
