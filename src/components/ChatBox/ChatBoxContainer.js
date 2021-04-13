@@ -19,7 +19,8 @@ class ChatBoxContainer extends Component {
           username: ''
         }
       },
-      users: []
+      users: [],
+      oldClID: ''
     }
 
   }
@@ -79,19 +80,32 @@ class ChatBoxContainer extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    console.log(this.state)
-    console.log("Message sent.")
+    
+  }
+
+  handleUserClick = (e, id) => {
+    e.preventDefault()
+    
+    if (this.state.oldClID == ''){
+      document.getElementById(id).classList.add("active_chat")
+      this.setState({ oldClID: id })
+    } else {
+      document.getElementById(this.state.oldClID).classList.remove("active_chat")
+      this.setState({ oldClID: id })
+      document.getElementById(id).classList.add("active_chat")
+    }
   }
 
 
   render() {
-    console.log(this.state)
+
     return (
       <ChatBoxView
         {...this.state}
         {...this.props}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
+        handleUserClick={this.handleUserClick}
       />
     )
   }
