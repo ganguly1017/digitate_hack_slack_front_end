@@ -1,4 +1,5 @@
 import React from 'react'
+import ChatList from './ChatList'
 
 
 function ChatBoxView(props) {
@@ -22,6 +23,11 @@ function ChatBoxView(props) {
               </div>
             </div>
             <div className="inbox_chat">
+              <ChatList 
+                username="Sandeep Ganguly"
+                date="Jan 31"
+                description="Android app developer"
+              />
               <div className="chat_list active_chat">
                 <div className="chat_people">
                   <div className="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" /> </div>
