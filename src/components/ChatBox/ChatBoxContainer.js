@@ -7,9 +7,22 @@ class ChatBoxContainer extends Component {
     super(props)
 
     this.state = {
-
+      message: ''
     }
 
+  }
+
+  handleChange = (e) => {
+    const name = e.target.name
+    const value = e.target.value
+
+    this.setState({ [name] : value})
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(this.state)
+    console.log("Message sent.")
   }
 
 
@@ -18,6 +31,8 @@ class ChatBoxContainer extends Component {
       <ChatBoxView 
         {...this.state}
         {...this.props}
+        handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
       />
     )
   }

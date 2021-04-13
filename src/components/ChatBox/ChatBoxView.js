@@ -1,5 +1,8 @@
 import React from 'react'
 import ChatList from './ChatList'
+import IncomingMessage from './IncomingMessage'
+import OutgoingMessage from './OutgoingMessage'
+import TextFieldInput from './../common/TextFieldInput'
 
 
 function ChatBoxView(props) {
@@ -102,6 +105,30 @@ function ChatBoxView(props) {
           </div>
           <div className="mesgs">
             <div className="msg_history">
+              <IncomingMessage 
+                message="Create a login page api for this app."
+                date="April 13"
+                time="01:00 PM"
+              />
+              <OutgoingMessage 
+                message="Fix the reponsive issue of shopping cart."
+                date="April 30"
+                time="08:00 PM"
+              />
+              <OutgoingMessage 
+                message="Fix the reponsive issue of shopping cart."
+                date="April 30"
+                time="08:00 PM"
+              />
+              <div className="incoming_msg">
+                <div className="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" /> </div>
+                <div className="received_msg">
+                  <div className="received_withd_msg">
+                    <p>Test which is a new approach to have all
+                    solutions</p>
+                    <span className="time_date"> 11:01 AM    |    June 9</span></div>
+                </div>
+              </div>
               <div className="incoming_msg">
                 <div className="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" /> </div>
                 <div className="received_msg">
@@ -125,6 +152,11 @@ function ChatBoxView(props) {
                     <span className="time_date"> 11:01 AM    |    Yesterday</span></div>
                 </div>
               </div>
+              <OutgoingMessage 
+                message="Fix the reponsive issue of shopping cart."
+                date="April 30"
+                time="08:00 PM"
+              />
               <div className="outgoing_msg">
                 <div className="sent_msg">
                   <p>Apollo University, Delhi, India Test</p>
@@ -143,8 +175,16 @@ function ChatBoxView(props) {
             </div>
             <div className="type_msg">
               <div className="input_msg_write">
-                <input type="text" className="write_msg" placeholder="Type a message" />
-                <button className="msg_send_btn" type="button"><i className="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                <TextFieldInput 
+                  type="text"
+                  className="write_msg"
+                  placeholder="Type a message"
+                  name="message"
+                  id="message"
+                  value={props.message}
+                  onChange={props.handleChange}
+                />
+                <button className="msg_send_btn" onClick={props.handleSubmit} type="button"><i className="far fa-comment-dots text-warning"></i></button>
               </div>
             </div>
           </div>
