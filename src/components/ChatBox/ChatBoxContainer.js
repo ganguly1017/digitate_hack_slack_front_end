@@ -18,7 +18,8 @@ class ChatBoxContainer extends Component {
           _id: '',
           username: ''
         }
-      }
+      },
+      users: []
     }
 
   }
@@ -43,6 +44,37 @@ class ChatBoxContainer extends Component {
     })
 
 
+    // send axios AJAX request to get team user name
+    axios.post(
+      `${apiBaseURL}/api/chat/getTeamUser/`,
+      {
+        team: query.get("tid")
+      }
+    ).then(res => {
+      const users = res.data.users
+
+      let index = 0;
+
+      for (index = 0; index < users.length; index++) {
+        // send axios AJAX request to get team data
+        axios.post(
+          `${apiBaseURL}/api/user/getUser/${users[index]}`
+        ).then(res => {
+          
+          let temp = this.state.users
+          
+          temp.push(res.data.user)
+          
+          this.setState({ users: temp })
+        }).catch(err => {
+
+        })
+      }
+    }).catch(err => {
+
+    })
+
+
   }
 
   handleSubmit = (e) => {
@@ -53,6 +85,7 @@ class ChatBoxContainer extends Component {
 
 
   render() {
+    console.log(this.state)
     return (
       <ChatBoxView
         {...this.state}

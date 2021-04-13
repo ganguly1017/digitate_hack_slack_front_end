@@ -28,8 +28,13 @@ class NewTeamContainer extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
 
+    let chatMessage = {
+      message: "Send any messaeg to joing this group",
+      to: this.props.auth.user.id
+    }
+
     // dispatch create new team action
-    this.props.createNewTeam(this.state, this.props.history)
+    this.props.createNewTeam(this.state, this.props.history, chatMessage)
   }
 
   render() {
@@ -46,6 +51,7 @@ class NewTeamContainer extends Component {
 
 
 const mapStateToProps = state => ({
+  auth: state.auth,
   team: state.team
 })
 
