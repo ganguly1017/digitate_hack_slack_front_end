@@ -19,6 +19,12 @@ class ChatBoxContainer extends Component {
     this.setState({ [name] : value})
   }
 
+  componentDidMount(){
+    const query = new URLSearchParams(window.location.search)
+
+    console.log(query.get("tid"))
+  }
+
   handleSubmit = (e) => {
     e.preventDefault()
     console.log(this.state)
