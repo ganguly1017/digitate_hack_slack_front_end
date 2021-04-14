@@ -61,11 +61,11 @@ class ChatBoxContainer extends Component {
         axios.post(
           `${apiBaseURL}/api/user/getUser/${users[index]}`
         ).then(res => {
-          
+
           let temp = this.state.users
-          
+
           temp.push(res.data.user)
-          
+
           this.setState({ users: temp })
         }).catch(err => {
 
@@ -80,13 +80,33 @@ class ChatBoxContainer extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    
+
+    const query = new URLSearchParams(window.location.search)
+
+    const chatMessage = {
+      message: this.state.message,
+      team: query.get("tid")
+    };
+
+    // Send AJAX Call to create new Chat Message
+    axios.post(
+      `${apiBaseURL}/api/chat/new`,
+      chatMessage
+    ).then(res => {
+
+      // empty chat box message
+      this.setState({ message: '' })
+      
+    }).catch(err => {
+
+    })
+
   }
 
   handleUserClick = (e, id) => {
     e.preventDefault()
-    
-    if (this.state.oldClID == ''){
+
+    if (this.state.oldClID == '') {
       document.getElementById(id).classList.add("active_chat")
       this.setState({ oldClID: id })
     } else {
