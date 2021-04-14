@@ -11,7 +11,7 @@ import Swal from 'sweetalert2'
 
 
 // create new team
-export const createNewTeam = (team, history, chatMessage) => dispatch => {
+export const createNewTeam = (team, history) => dispatch => {
   // set isLoading to true
   dispatch(teamRequest());
 
@@ -26,29 +26,14 @@ export const createNewTeam = (team, history, chatMessage) => dispatch => {
     // set isLoading to false
     dispatch(teamResponse())
 
-    chatMessage = {
-      ...chatMessage,
-      team: res.data.team.id
-    }
+    Swal.fire(
+      'New Team Register',
+      res.data.message,
+      'success'
+    )
 
-    // send axios AJAX request to create default chat message of user
-    axios.post(
-      `${apiBaseURL}/api/chat/new`,
-      chatMessage
-    ).then(res => {
-      
-      Swal.fire(
-        'New Team Register',
-        res.data.message,
-        'success'
-      )
-
-      // redirect user to my team page
-      history.push("/my")
-    }).catch(err => {
-
-    })
-
+    // redirect user to my team page
+    history.push("/my")
   }).catch(err => {
     // set isLoading to false
     dispatch(teamResponse())
