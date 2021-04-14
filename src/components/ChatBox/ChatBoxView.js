@@ -16,20 +16,33 @@ function ChatBoxView(props) {
       i={index}
     />
   ))
-  
+
   let chatMessages = ''
 
-  if (props.messages.length != 0 ){
-    chatMessages = props.messages.map(( message, index ) => {
-      return (
-        <IncomingMessage 
-          message={message.message}
-          time={message.createdAt.split(';')[1]}
-          date={message.createdAt.split(';')[0]}
-          username={message.from.username}
-          key={index}
-        />
-      )
+  if (props.messages.length != 0) {
+    chatMessages = props.messages.map((message, index) => {
+      if (message.from._id == props.auth.user.id) {
+        return (
+          <OutgoingMessage
+            message={message.message}
+            time={message.createdAt.split(';')[1]}
+            date={message.createdAt.split(';')[0]}
+            username={message.from.username}
+            key={index}
+          />
+        )
+      } else {
+        return (
+          <IncomingMessage
+            message={message.message}
+            time={message.createdAt.split(';')[1]}
+            date={message.createdAt.split(';')[0]}
+            username={message.from.username}
+            key={index}
+          />
+        )
+      }
+
     })
   }
 

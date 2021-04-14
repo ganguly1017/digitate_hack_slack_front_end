@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import ChatBoxView from './ChatBoxView'
 import axios from 'axios'
 import { apiBaseURL } from './../../utils/constant'
+
 
 class ChatBoxContainer extends Component {
 
@@ -34,6 +36,7 @@ class ChatBoxContainer extends Component {
   }
 
   componentDidMount() {
+
     const query = new URLSearchParams(window.location.search)
 
     // send axios AJAX request to get team data
@@ -45,40 +48,10 @@ class ChatBoxContainer extends Component {
 
     })
 
-
-    // send axios AJAX request to get team user name
-    axios.post(
-      `${apiBaseURL}/api/chat/getTeamUser/`,
-      {
-        team: query.get("tid")
-      }
-    ).then(res => {
-      const users = res.data.users
-
-      let index = 0;
-
-      for (index = 0; index < users.length; index++) {
-        // send axios AJAX request to get team data
-        axios.post(
-          `${apiBaseURL}/api/user/getUser/${users[index]}`
-        ).then(res => {
-
-          let temp = this.state.users
-
-          temp.push(res.data.user)
-
-          this.setState({ users: temp })
-        }).catch(err => {
-
-        })
-      }
-    }).catch(err => {
-
-    })
-
-    // get all chat messages
-    this.getChatMessages()
-
+    // get all chat messages after every 5 seconds
+    setInterval(() => {
+      this.getChatMessages()
+    }, 500)
   }
 
   handleSubmit = (e) => {
@@ -124,6 +97,39 @@ class ChatBoxContainer extends Component {
 
     const query = new URLSearchParams(window.location.search)
 
+    // send axios AJAX request to get team user name
+    axios.post(
+      `${apiBaseURL}/api/chat/getTeamUser/`,
+      {
+        team: query.get("tid")
+      }
+    ).then(res => {
+      const users = res.data.users
+
+      let index = 0;
+
+      for (index = 0; index < users.length; index++) {
+        // send axios AJAX request to get team data
+        axios.post(
+          `${apiBaseURL}/api/user/getUser/${users[index]}`
+        ).then(res => {
+
+          // reset state data
+          this.setState({ users: [] })
+
+          let temp = this.state.users
+
+          temp.push(res.data.user)
+
+          this.setState({ users: temp })
+        }).catch(err => {
+
+        })
+      }
+    }).catch(err => {
+
+    })
+
     // Send AJAX Call to get all Chat Message
     axios.post(
       `${apiBaseURL}/api/chat/getMessages/${query.get("tid")}`
@@ -131,7 +137,6 @@ class ChatBoxContainer extends Component {
 
       // empty chat box message
       this.setState({ messages: res.data.messages })
-      console.log(res.data)
     }).catch(err => {
 
     })
@@ -152,4 +157,13 @@ class ChatBoxContainer extends Component {
   }
 }
 
-export default ChatBoxContainer
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+
+const mapDispatchToProps = {
+
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatBoxContainer)

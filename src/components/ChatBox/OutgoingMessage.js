@@ -4,15 +4,16 @@ function OutgoingMessage(props) {
   const {
     message,
     date,
-    time
+    time,
+    username
   } = props
 
 
   return (
     <div className="outgoing_msg mb-1">
       <div className="sent_msg">
-        <p>{message}</p>
-        <span className="time_date">{ time + " | " + date  }</span> </div>
+        <p>{ "@" + username + " -> " + message}</p>
+        <span className="time_date">{ date + " | " + time  }</span> </div>
     </div>
   )
 }
