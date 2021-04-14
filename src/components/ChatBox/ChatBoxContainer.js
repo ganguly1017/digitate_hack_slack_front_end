@@ -20,7 +20,8 @@ class ChatBoxContainer extends Component {
         }
       },
       users: [],
-      oldClID: ''
+      oldClID: '',
+      messages: []
     }
 
   }
@@ -75,6 +76,8 @@ class ChatBoxContainer extends Component {
 
     })
 
+    // get all chat messages
+    this.getChatMessages()
 
   }
 
@@ -96,7 +99,7 @@ class ChatBoxContainer extends Component {
 
       // empty chat box message
       this.setState({ message: '' })
-      
+
     }).catch(err => {
 
     })
@@ -114,6 +117,24 @@ class ChatBoxContainer extends Component {
       this.setState({ oldClID: id })
       document.getElementById(id).classList.add("active_chat")
     }
+  }
+
+
+  getChatMessages = () => {
+
+    const query = new URLSearchParams(window.location.search)
+
+    // Send AJAX Call to get all Chat Message
+    axios.post(
+      `${apiBaseURL}/api/chat/getMessages/${query.get("tid")}`
+    ).then(res => {
+
+      // empty chat box message
+      this.setState({ messages: res.data.messages })
+      console.log(res.data)
+    }).catch(err => {
+
+    })
   }
 
 

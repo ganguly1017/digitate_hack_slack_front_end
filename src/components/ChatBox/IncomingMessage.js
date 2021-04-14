@@ -4,7 +4,8 @@ function IncomingMessage(props) {
   const { 
     message,
     time,
-    date
+    date,
+    username
   } = props
 
   return (
@@ -12,8 +13,8 @@ function IncomingMessage(props) {
       <div className="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="avatar" /> </div>
       <div className="received_msg">
         <div className="received_withd_msg">
-          <p>{message}</p>
-          <span className="time_date">{ time + " | " + date  }</span></div>
+          <p>{"@" + username + " -> " +  message}</p>
+          <span className="time_date">{ date + " | " + time  }</span></div>
       </div>
     </div>
   )
