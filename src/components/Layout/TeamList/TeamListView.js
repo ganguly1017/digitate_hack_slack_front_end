@@ -1,4 +1,5 @@
 import React from 'react'
+import propTypes from 'prop-types'
 import TeamCard from './TeamCard'
 
 function TeamListView(props) {
@@ -7,7 +8,7 @@ function TeamListView(props) {
 
   let out = ''
 
-  if (teams.length == 0) {
+  if (teams.length === 0) {
     out = (
       <React.Fragment>
         <div className="col-md-6 text-center">
@@ -45,6 +46,10 @@ function TeamListView(props) {
       </div>
     </div>
   )
+}
+
+TeamListView.propTypes = {
+  teams: propTypes.array.isRequired
 }
 
 export default TeamListView

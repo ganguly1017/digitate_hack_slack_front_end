@@ -1,4 +1,5 @@
 import React from 'react'
+import propTypes from 'prop-types'
 
 function IncomingMessage(props) {
   const { 
@@ -18,6 +19,13 @@ function IncomingMessage(props) {
       </div>
     </div>
   )
+}
+
+IncomingMessage.propTypes = {
+  message: propTypes.string.isRequired,
+  date: propTypes.string.isRequired,
+  time: propTypes.string.isRequired,
+  username: propTypes.string.isRequired
 }
 
 export default IncomingMessage

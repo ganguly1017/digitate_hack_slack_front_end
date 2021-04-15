@@ -1,4 +1,5 @@
 import React from 'react'
+import propTypes from 'prop-types'
 import TextFieldInput from './../common/TextFieldInput'
 
 function NewTeamView(props) {
@@ -47,6 +48,14 @@ function NewTeamView(props) {
       </div>
     </div>
   )
+}
+
+NewTeamView.propTypes = {
+  team: propTypes.object.isRequired,
+  handleChange: propTypes.func.isRequired,
+  handleSubmit: propTypes.func.isRequired,
+  name: propTypes.string.isRequired,
+  description: propTypes.string.isRequired
 }
 
 export default NewTeamView

@@ -1,4 +1,5 @@
 import React from 'react'
+import propTypes from 'prop-types'
 
 function OutgoingMessage(props) {
   const {
@@ -16,6 +17,14 @@ function OutgoingMessage(props) {
         <span className="time_date">{ date + " | " + time  }</span> </div>
     </div>
   )
+}
+
+
+OutgoingMessage.propTypes = {
+  message: propTypes.string.isRequired,
+  date: propTypes.string.isRequired,
+  time: propTypes.string.isRequired,
+  username: propTypes.string.isRequired
 }
 
 export default OutgoingMessage

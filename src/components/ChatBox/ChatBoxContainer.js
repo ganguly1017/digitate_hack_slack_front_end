@@ -93,7 +93,7 @@ class ChatBoxContainer extends Component {
   handleUserClick = (e, id) => {
     e.preventDefault()
 
-    if (this.state.oldClID == '') {
+    if (this.state.oldClID === '') {
       document.getElementById(id).classList.add("active_chat")
       this.setState({ oldClID: id })
     } else {
@@ -163,7 +163,7 @@ class ChatBoxContainer extends Component {
       `${apiBaseURL}/api/chat/getMessages/${query.get("tid")}`
     ).then(res => {
 
-      // empty chat box message
+      // set chat box messages
       this.setState({ messages: res.data.messages })
     }).catch(err => {
       // Handle token expire

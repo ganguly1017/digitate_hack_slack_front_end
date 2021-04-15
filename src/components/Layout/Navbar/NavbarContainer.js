@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 import NavbarView from './NavbarView'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { logoutUser } from './../../../redux/action/authActions'
+
 
 class NavbarContainer extends Component {
   constructor(props){
@@ -28,6 +30,10 @@ class NavbarContainer extends Component {
       />
     )
   }
+}
+
+NavbarContainer.propTypes = {
+  logoutUser: propTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({

@@ -1,4 +1,5 @@
 import React from 'react'
+import propTypes from 'prop-types'
 import TextFieldInput from './../common/TextFieldInput'
 
 
@@ -74,6 +75,16 @@ function RegisterView(props) {
       </div>
     </div>
   )
+}
+
+RegisterView.propTypes = {
+  auth: propTypes.object.isRequired,
+  handleSubmit: propTypes.func.isRequired,
+  handleChange: propTypes.func.isRequired,
+  username: propTypes.string.isRequired,
+  password: propTypes.string.isRequired,
+  email: propTypes.string.isRequired,
+  password1: propTypes.string.isRequired
 }
 
 

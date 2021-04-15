@@ -1,26 +1,22 @@
 import React from 'react'
 import classnames from 'classnames'
+import propTypes from 'prop-types'
 
 function TextAreaInput(props) {
 
   const {
-    type,
     id,
     name,
     placeholder,
     value,
     onChange,
-    lblText,
-    infoText,
     className,
     error
   } = props
 
   return (
     <div className="mb-3">
-      { lblText && (<label htmlFor={id} className="form-label">{lblText}</label>) }
-      <textarea 
-        type={type}
+      <textarea
         id={id}
         name={name}
         value={value}
@@ -30,7 +26,6 @@ function TextAreaInput(props) {
           "is-invalid": error
         })}
       />
-      {infoText && (<div id={id} className="form-text"><i className="fas fa-info-circle"></i>{infoText}</div>)}
       {error && (
         <div className="invalid-feedback">
           <i className="fas fa-exclamation-circle"></i>{error}
@@ -38,6 +33,17 @@ function TextAreaInput(props) {
       )}
     </div>
   )
+}
+
+TextAreaInput.propTypes = {
+  id: propTypes.string.isRequired,
+  name: propTypes.string.isRequired,
+  placeholder: propTypes.string,
+  value: propTypes.any,
+  onChange: propTypes.func.isRequired,
+  infoText: propTypes.string,
+  className: propTypes.string,
+  error: propTypes.object
 }
 
 export default TextAreaInput

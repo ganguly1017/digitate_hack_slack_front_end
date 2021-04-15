@@ -4,7 +4,7 @@ import propTypes from 'prop-types'
 
 function MyTeamView(props) {
   let out = ''
-  if (props.teams.length == 0) {
+  if (props.teams.length === 0) {
     out = (
       <div className="col-md-12 text-center" style={{ height: "300px" }}>
         <p className="h4">You don't created any chat teams yet.</p>

@@ -1,5 +1,7 @@
 import React from 'react'
+import propTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+
 
 function NavbarView(props) {
 
@@ -58,6 +60,11 @@ function NavbarView(props) {
       </div>
     </nav>
   )
+}
+
+NavbarView.propTypes = {
+  auth: propTypes.object.isRequired,
+  logoutUser: propTypes.func.isRequired
 }
 
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import propTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 function TeamCard(props) {
@@ -29,6 +30,15 @@ function TeamCard(props) {
     </div>
   )
 }
+
+TeamCard.propTypes = {
+  title: propTypes.string,
+  about: propTypes.string,
+  description: propTypes.string,
+  btn_text: propTypes.string,
+  tid: propTypes.string
+}
+
 
 
 export default TeamCard

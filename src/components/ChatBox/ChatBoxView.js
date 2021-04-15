@@ -2,14 +2,14 @@ import React from 'react'
 import ChatList from './ChatList'
 import IncomingMessage from './IncomingMessage'
 import OutgoingMessage from './OutgoingMessage'
-import TextFieldInput from './../common/TextFieldInput'
 import TextAreaInput from './../common/TextAreaInput'
+import propTypes from 'prop-types'
 
 
 function ChatBoxView(props) {
   let team_user_list = ''
 
-  if (props.users.length != 0) {
+  if (props.users.length !== 0) {
     team_user_list = props.users.map((user, index) => (
       <ChatList
         username={user.username}
@@ -24,9 +24,9 @@ function ChatBoxView(props) {
 
   let chatMessages = ''
 
-  if (props.messages.length != 0) {
+  if (props.messages.length !== 0) {
     chatMessages = props.messages.map((message, index) => {
-      if (message.from._id == props.auth.user.id) {
+      if (message.from._id === props.auth.user.id) {
         return (
           <OutgoingMessage
             message={message.message}
@@ -93,6 +93,17 @@ function ChatBoxView(props) {
       </div>
     </div>
   )
+}
+
+ChatBoxView.propTypes = {
+  handleSubmit: propTypes.func.isRequired,
+  handleChange: propTypes.func.isRequired,
+  handleUserClick: propTypes.func.isRequired,
+  users: propTypes.array.isRequired,
+  messages: propTypes.array.isRequired,
+  team: propTypes.object.isRequired,
+  error: propTypes.object.isRequired,
+  message: propTypes.string.isRequired
 }
 
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
+import propTypes from 'prop-types'
 
 function TextFieldInput(props) {
 
@@ -39,5 +40,19 @@ function TextFieldInput(props) {
     </div>
   )
 }
+
+TextFieldInput.propTypes = {
+  type: propTypes.string.isRequired,
+  id: propTypes.string.isRequired,
+  name: propTypes.string.isRequired,
+  placeholder: propTypes.string,
+  value: propTypes.any,
+  onChange: propTypes.func.isRequired,
+  lblText: propTypes.string,
+  infoText: propTypes.string,
+  className: propTypes.string,
+  error: propTypes.object
+}
+
 
 export default TextFieldInput

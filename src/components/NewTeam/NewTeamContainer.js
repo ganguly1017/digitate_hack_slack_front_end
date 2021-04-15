@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 import NewTeamView from './NewTeamView'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
@@ -45,6 +46,11 @@ class NewTeamContainer extends Component {
       />
     )
   }
+}
+
+NewTeamContainer.propTypes = {
+  createNewTeam: propTypes.func.isRequired,
+  clearErrors: propTypes.func.isRequired
 }
 
 

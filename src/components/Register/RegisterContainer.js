@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 import RegisterView from './RegisterView'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
@@ -27,7 +28,7 @@ class RegisterContainer extends Component {
     const name = e.target.name
     const value = e.target.value
 
-    if (name == "username"){
+    if (name === "username"){
       this.setState({ [name] : value.replace(" ",  "_")})
       return;
     }
@@ -51,6 +52,10 @@ class RegisterContainer extends Component {
       />
     )
   }
+}
+
+RegisterContainer.propTypes = {
+  registeUser: propTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({

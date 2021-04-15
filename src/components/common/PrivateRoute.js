@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import propTypes from 'prop-types'
 
 function PrivateRoute(props) {
 
@@ -13,6 +14,11 @@ function PrivateRoute(props) {
       <Redirect to="/login" />
     )
   }
+}
+
+PrivateRoute.propTypes = {
+  auth: propTypes.object.isRequired,
+  children: propTypes.element.isRequired
 }
 
 const mapStateToProps = state => ({

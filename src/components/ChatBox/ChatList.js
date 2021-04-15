@@ -1,4 +1,5 @@
 import React from 'react'
+import propTypes from 'prop-types'
 
 function ChatList(props) {
 
@@ -21,6 +22,14 @@ function ChatList(props) {
       </div>
     </div>
   )
+}
+
+ChatList.propTypes = {
+  username: propTypes.string.isRequired,
+  date: propTypes.string.isRequired,
+  description: propTypes.string.isRequired,
+  onClick: propTypes.func.isRequired,
+  i: propTypes.number.isRequired
 }
 
 export default ChatList
