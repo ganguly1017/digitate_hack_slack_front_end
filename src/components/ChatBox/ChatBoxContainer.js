@@ -23,7 +23,8 @@ class ChatBoxContainer extends Component {
       },
       users: [],
       oldClID: '',
-      messages: []
+      messages: [],
+      user_id: new Set()
     }
 
   }
@@ -109,22 +110,33 @@ class ChatBoxContainer extends Component {
       let index = 0;
 
       for (index = 0; index < users.length; index++) {
-        // send axios AJAX request to get team data
-        axios.post(
-          `${apiBaseURL}/api/user/getUser/${users[index]}`
-        ).then(res => {
 
-          // reset state data
-          this.setState({ users: [] })
+        if (!this.state.user_id.has(users[index])) {
+          // send axios AJAX request to get team data
+          axios.post(
+            `${apiBaseURL}/api/user/getUser/${users[index]}`
+          ).then(res => {
+            this.setState(prevState => {
+              const u = res.data.user
 
-          let temp = this.state.users
+              // get old users array data
+              let temp = prevState.users
 
-          temp.push(res.data.user)
+              // add new user to users array
+              temp.push(u)
 
-          this.setState({ users: temp })
-        }).catch(err => {
+              // update state values
+              return {
+                ...prevState,
+                user_id: prevState.user_id.add(u._id),
+                users: temp
+              }
+            })
+          }).catch(err => {
 
-        })
+          })
+        }
+
       }
     }).catch(err => {
 
