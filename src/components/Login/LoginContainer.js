@@ -15,6 +15,9 @@ class LoginContainer extends Component {
 
     // auth clear error action dispatch
     this.props.clearErrors()
+
+    // page title update
+    document.title = "Hack Slack - Login"
   }
 
   handleChange = (e) => {

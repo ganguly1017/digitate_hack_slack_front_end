@@ -19,6 +19,8 @@ class RegisterContainer extends Component {
     // auth clear error action dispatch
     this.props.clearErrors()
 
+    // page title update
+    document.title = "Hack Slack - Register"
   }
 
   handleChange = (e) => {

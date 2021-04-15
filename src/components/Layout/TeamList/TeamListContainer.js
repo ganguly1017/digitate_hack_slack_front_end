@@ -12,6 +12,9 @@ class TeamListContainer extends Component {
     this.state = {
       teams: []
     }
+
+    // page title update
+    document.title = "Hack Slack - All Chat Teams"
   }
 
   componentDidMount(){

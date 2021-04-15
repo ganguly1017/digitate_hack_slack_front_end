@@ -16,6 +16,9 @@ class NewTeamContainer extends Component {
 
     // dispatch clear errors action of team
     this.props.clearErrors()
+
+    // page title update
+    document.title = "Hack Slack - Create Chat Team"
   }
 
   handleChange = (e) => {
