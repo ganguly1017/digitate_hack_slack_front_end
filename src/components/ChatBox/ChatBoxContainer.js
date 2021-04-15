@@ -26,7 +26,8 @@ class ChatBoxContainer extends Component {
       oldClID: '',
       messages: [],
       user_id: new Set(),
-      error: {}
+      error: {},
+      interval_id: ''
     }
 
   }
@@ -55,9 +56,16 @@ class ChatBoxContainer extends Component {
     })
 
     // get all chat messages after every 5 seconds
-    setInterval(() => {
+    let id = setInterval(() => {
       this.getChatMessages()
     }, 500)
+
+    // set interval id to state
+    this.setState({ interval_id: id })
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.state.interval_id)
   }
 
   handleSubmit = (e) => {
