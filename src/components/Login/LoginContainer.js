@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import propTypes from 'prop-types'
 import LoginView from './LoginView'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
@@ -52,6 +53,11 @@ class LoginContainer extends Component {
       />
     )
   }
+}
+
+LoginContainer.propTypes = {
+  history: propTypes.object.isRequired,
+  loginUser: propTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({

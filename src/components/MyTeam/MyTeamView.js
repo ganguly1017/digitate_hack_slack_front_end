@@ -1,5 +1,6 @@
 import React from 'react'
 import TeamCard from './../Layout/TeamList/TeamCard'
+import propTypes from 'prop-types'
 
 function MyTeamView(props) {
   let out = ''
@@ -32,6 +33,10 @@ function MyTeamView(props) {
       </div>
     </div>
   )
+}
+
+MyTeamView.propTypes = {
+  teams: propTypes.array.isRequired
 }
 
 export default MyTeamView

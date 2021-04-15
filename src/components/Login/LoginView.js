@@ -1,5 +1,6 @@
 import React from 'react'
 import TextFieldInput from './../common/TextFieldInput'
+import propTypes from 'prop-types'
 
 function LoginView(props) {
 
@@ -48,6 +49,14 @@ function LoginView(props) {
       </div>
     </div>
   )
+}
+
+LoginView.propTypes = {
+  auth: propTypes.object.isRequired,
+  handleChange: propTypes.func.isRequired,
+  handleSubmit: propTypes.func.isRequired,
+  email: propTypes.string.isRequired,
+  password: propTypes.string.isRequired
 }
 
 export default LoginView
