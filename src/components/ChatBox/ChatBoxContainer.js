@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import ChatBoxView from './ChatBoxView'
 import axios from 'axios'
 import { apiBaseURL } from './../../utils/constant'
+import TokenExpire from './../../utils/TokenExpire'
 
 
 class ChatBoxContainer extends Component {
@@ -47,7 +48,10 @@ class ChatBoxContainer extends Component {
     ).then(res => {
       this.setState({ team: res.data.team })
     }).catch(err => {
-
+      // Handle token expire
+      if (err.response.data.error.token_error) {
+        TokenExpire()
+      }
     })
 
     // get all chat messages after every 5 seconds
@@ -76,8 +80,12 @@ class ChatBoxContainer extends Component {
       this.setState({ message: '' })
       this.setState({ error: {} })
 
-    }).catch(err => {  
+    }).catch(err => {
       this.setState({ error: err.response.data.error })
+      // Handle token expire
+      if (err.response.data.error.token_error) {
+        TokenExpire()
+      }
     })
 
   }
@@ -135,13 +143,19 @@ class ChatBoxContainer extends Component {
               }
             })
           }).catch(err => {
-
+            // Handle token expire
+            if (err.response.data.error.token_error) {
+              TokenExpire()
+            }
           })
         }
 
       }
     }).catch(err => {
-
+      // Handle token expire
+      if (err.response.data.error.token_error) {
+        TokenExpire()
+      }
     })
 
     // Send AJAX Call to get all Chat Message
@@ -152,7 +166,10 @@ class ChatBoxContainer extends Component {
       // empty chat box message
       this.setState({ messages: res.data.messages })
     }).catch(err => {
-
+      // Handle token expire
+      if (err.response.data.error.token_error) {
+        TokenExpire()
+      }
     })
   }
 

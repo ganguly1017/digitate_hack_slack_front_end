@@ -8,6 +8,7 @@ import {
 import { apiBaseURL } from './../../utils/constant'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import TokenExpire from './../../utils/TokenExpire'
 
 
 // create new team
@@ -37,6 +38,11 @@ export const createNewTeam = (team, history) => dispatch => {
   }).catch(err => {
     // set isLoading to false
     dispatch(teamResponse())
+
+    // Handle token expire
+    if (err.response.data.error.token_error){
+      TokenExpire()
+    }
 
     // set errors
     dispatch(setError(err.response.data.error))

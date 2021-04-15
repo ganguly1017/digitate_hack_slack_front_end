@@ -11,6 +11,7 @@ import { apiBaseURL } from './../../utils/constant'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import setAuthToken from './../../utils/setAuthToken'
+import TokenExpire from './../../utils/TokenExpire'
 
 
 // login user
@@ -46,6 +47,11 @@ export const loginUser = (user, history) => dispatch => {
     // set isLoading to false
     dispatch(authResponse())
 
+    // Handle token expire
+    if (err.response.data.error.token_error){
+      TokenExpire()
+    }
+
     // set errors
     dispatch(setError(err.response.data.error))
   })
@@ -79,6 +85,11 @@ export const registeUser = (user, history) => dispatch => {
   }).catch(err => {
     // set isLoading to false
     dispatch(authResponse())
+
+    // Handle token expire
+    if (err.response.data.error.token_error){
+      TokenExpire()
+    }
 
     // set errors
     dispatch(setError(err.response.data.error))

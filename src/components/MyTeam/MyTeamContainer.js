@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import MyTeamView from './MyTeamView'
 import axios from 'axios'
 import { apiBaseURL } from './../../utils/constant'
+import TokenExpire from './../../utils/TokenExpire'
 
 class MyTeamContainer extends Component {
 
@@ -19,7 +20,10 @@ class MyTeamContainer extends Component {
     ).then(res => {
       this.setState({ teams: res.data.teams })
     }).catch(err => {
-
+      // Handle token expire
+      if (err.response.data.error.token_error){
+        TokenExpire()
+      }
     })
   }
 
