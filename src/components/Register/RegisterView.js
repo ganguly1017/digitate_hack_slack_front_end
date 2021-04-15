@@ -4,7 +4,13 @@ import TextFieldInput from './../common/TextFieldInput'
 
 function RegisterView(props) {
 
-  const { error } = props.auth
+  const { error, isLoading } = props.auth
+
+  if (isLoading){
+    document.body.classList.add("loading")
+  } else {
+    document.body.classList.remove("loading")
+  }
 
   return (
     <div className="container-fluid">

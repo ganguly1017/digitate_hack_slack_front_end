@@ -18,11 +18,22 @@ class TeamListContainer extends Component {
   }
 
   componentDidMount(){
+
+    // start loader before api call
+    document.body.classList.add("loading")
+
     axios.get(
       `${apiBaseURL}/api/team/all`
     ).then(res => {
       this.setState({ teams: res.data.teams })
+
+      // remove loader after api call
+      document.body.classList.remove("loading")
     }).catch(err => {
+
+      // remove loader after api call
+      document.body.classList.remove("loading")
+      
       // Handle token expire
       if (err.response.data.error.token_error){
         TokenExpire()

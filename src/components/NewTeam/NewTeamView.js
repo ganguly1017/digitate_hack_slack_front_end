@@ -2,7 +2,13 @@ import React from 'react'
 import TextFieldInput from './../common/TextFieldInput'
 
 function NewTeamView(props) {
-  const { error } = props.team
+  const { error, isLoading } = props.team
+
+  if (isLoading){
+    document.body.classList.add("loading")
+  } else {
+    document.body.classList.remove("loading")
+  }
 
   return (
     <div className="container-fluid">
