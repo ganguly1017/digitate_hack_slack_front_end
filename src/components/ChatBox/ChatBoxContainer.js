@@ -24,7 +24,8 @@ class ChatBoxContainer extends Component {
       users: [],
       oldClID: '',
       messages: [],
-      user_id: new Set()
+      user_id: new Set(),
+      error: {}
     }
 
   }
@@ -73,9 +74,10 @@ class ChatBoxContainer extends Component {
 
       // empty chat box message
       this.setState({ message: '' })
+      this.setState({ error: {} })
 
-    }).catch(err => {
-
+    }).catch(err => {  
+      this.setState({ error: err.response.data.error })
     })
 
   }

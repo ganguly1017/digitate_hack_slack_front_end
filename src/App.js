@@ -46,7 +46,9 @@ export default function App() {
           <RegisterContainer />
         </Route>
         <Route exact path="/chat_box">
-          <ChatBoxContainer />
+          <PrivateRoute>
+            <ChatBoxContainer />
+          </PrivateRoute>
         </Route>
         <Route exact path="/createTeam">
           <PrivateRoute>

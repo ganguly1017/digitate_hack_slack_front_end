@@ -11,7 +11,7 @@ function TeamCard(props) {
   } = props
   
   return (
-    <div className="card shadow animate__animated animate__rubberBand p-3 mb-5 bg-body rounded" >
+    <div className="card shadow animate__animated animate__pulse p-3 mb-5 bg-body rounded" >
       <div className="card-body">
         <div className="row">
           <div className="col-md-4">

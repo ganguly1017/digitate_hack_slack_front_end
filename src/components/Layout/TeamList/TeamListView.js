@@ -18,7 +18,7 @@ function TeamListView(props) {
           />
         </div>
         <div className="col-md-6 text-center">
-          <p className="my-5 animate__animated animate__flash">Join this team to chat with project software developer</p>
+          <p className="my-5 animate__animated animate__pulse">Join this team to chat with project software developer</p>
         </div>
       </React.Fragment>
     )
